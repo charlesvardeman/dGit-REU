@@ -1,0 +1,60 @@
+@prefix git: <http://www.example.com/ns/#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+git:repository
+	rdfs:subClassof prov:Collection ;
+	rdfs:subClassof git:Collection ;
+	rdfs:comment "Indicates that subject is a Git repository that prov:hadMember and git:hadLogMember" .
+
+git:Collection
+	a rdfs:subClassof prov:Activity ;
+	rdfs:comment "Similar to prov:Collection, however, members are activites" .
+
+git:hadLogMember
+	rdfs:subPropertyof git:hadActivityMember ;
+	rdfs:domain git:repository ;
+	rdfs:range git:commit , git:merge ;
+	rdfs;comment "Documents commits and merges in the git log" .
+
+git:hadActivityMember
+	rdfs:domain git:Collection ;
+	rdfs:range prov:Activity .
+
+git:asOf
+	rdfs:comment "Object is a URI of the commit tracking the subject blob" ;
+	rdfs:domain git:blob ;
+	rdfs:range git:commit .
+
+git:commit 
+	rdfs:subclassof prov:Activity ;
+	rdfs:comment "Subject is a URI of a commit" .
+
+git:blob 
+	rdfs:subclassof prov:Entity ;
+	rdfs:comment "Subject is a URI of a blob" .
+
+git:hadLogMembers 
+	rdfs:domain git:repository ;
+	rdfs:range git:commit ;
+	rdfs:comment "Usage is like prov:hadMember for commits" .
+
+git:merge
+	a git:Collection ;
+	rdfs:comment "Members are commits involved in merge process" .
+
+git:pull
+	a git:Collection ;
+	rdgs:comment "Members are commits involved in pull process" .
+
+git:hasTag
+	rdfs:domain git:blob ;
+	rdfs:range rdfs:Literal .
+
+git:wasChildof
+	rdfs:domain git:commit ;
+	rdfs:range git:commit ;
+	rdfs:comment "Usage similar to prov:wasDerivedfrom, except references activities, specifically commits" .
+
+
+
