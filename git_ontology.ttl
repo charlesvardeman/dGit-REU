@@ -8,14 +8,14 @@ git:repository
 	rdfs:comment "Indicates that subject is a Git repository that prov:hadMember and git:hadLogMember" .
 
 git:Collection
-	a rdfs:subClassof prov:Activity ;
+	rdfs:subClassof prov:Activity ;
 	rdfs:comment "Similar to prov:Collection, however, members are activites" .
 
 git:hadLogMember
 	rdfs:subPropertyof git:hadActivityMember ;
 	rdfs:domain git:repository ;
 	rdfs:range git:commit , git:merge ;
-	rdfs;comment "Documents commits and merges in the git log" .
+	rdfs:comment "Documents commits and merges in the git log" .
 
 git:hadActivityMember
 	rdfs:domain git:Collection ;
@@ -26,15 +26,15 @@ git:asOf
 	rdfs:domain git:blob ;
 	rdfs:range git:commit .
 
-git:commit 
+git:commit
 	rdfs:subclassof prov:Activity ;
 	rdfs:comment "Subject is a URI of a commit" .
 
-git:blob 
+git:blob
 	rdfs:subclassof prov:Entity ;
 	rdfs:comment "Subject is a URI of a blob" .
 
-git:hadLogMembers 
+git:hadLogMembers
 	rdfs:domain git:repository ;
 	rdfs:range git:commit ;
 	rdfs:comment "Usage is like prov:hadMember for commits" .
@@ -45,7 +45,7 @@ git:merge
 
 git:pull
 	a git:Collection ;
-	rdgs:comment "Members are commits involved in pull process" .
+	rdfs:comment "Members are commits involved in pull process" .
 
 git:hasTag
 	rdfs:domain git:blob ;
